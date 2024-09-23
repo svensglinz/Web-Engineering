@@ -1,0 +1,162 @@
+/*hide checkbox to control navbar*/
+#nav-checkbox {
+    display: none;
+    cursor: pointer;
+}
+
+#nav-control:hover {
+    cursor: pointer;
+}
+
+body {
+    padding: 0 !important;
+    overflow: hidden;
+    color: black;
+    display: grid;
+    grid-template-areas:
+  "header header"
+  "side main"
+  "footer footer";
+    grid-template-columns: 50px auto;
+}
+
+body:has(#nav-checkbox:checked) {
+    transition: 1s ease-in-out;
+
+    > * {
+        transition: 2s ease-in-out !important;
+    }
+
+    grid-template-columns: 150px auto;
+
+    & section {
+        justify-content: start;
+
+        & ul {
+            align-items: flex-start;
+        }
+
+        & ul li a span {
+            display: initial;
+        }
+    }
+}
+
+/* circle */
+/* also put in checkbox */ 
+section:has(#nav-checkbox:checked):after {
+    content: "X";
+    display: flex;
+    align-items: center;
+    place-content: center;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid grey;
+    background: rgba(211, 211, 211, 0.8);
+}
+
+/*some elements already have some styling from the cards.css card that are unrelated such as section*/
+body > section {
+    position: relative;
+    padding: 0 var(--space);
+    justify-content: center;
+    border-right: 1px solid var(--border-color);
+    grid-area: side;
+
+    & ul {
+        align-items: center;
+        list-style-type: none;
+        padding-inline-start: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        & li > a {
+            color: #999;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        & li > a:hover {
+            color: black;
+        }
+
+        /* dont display text only icons */
+
+        & li > a > span {
+            display: none;
+        }
+    }
+}
+
+body > header {
+    height: 50px;
+    padding: var(--space);
+    grid-area: header;
+    gap: 15px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+
+    & h1 {
+        font-size: 1.75rem;
+        margin: 0;
+        flex-grow: 1;
+    }
+}
+
+body > main {
+    align-items: start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    grid-area: main;
+    height: calc(100vh - 90px); /*height header + height footer*/
+    overflow-y: scroll;
+    padding: var(--space)
+}
+
+body > footer {
+    height: 40px;
+    grid-area: footer;
+    border-top: 1px solid var(--border-color);
+    background-color: #f0f0f0;
+    text-align: center;
+    place-content: center;
+}
+
+article {
+    & main {
+        place-items: flex-start;
+    }
+}
+
+/*bootstrap large breakpoint*/
+@media screen and (min-width: 992px) {
+    body {
+        grid-template-columns: 150px auto;
+
+        & section {
+            justify-content: start;
+        }
+
+        & ul li a span {
+            display: initial;
+        }
+    }
+}
+
+/*
+Media queries (use bootstrap breakpoints)
+xs < 576px
+sm >= 576 px
+md >= 768px
+lg >= 992px
+xl >= 1200px
+xxl >= 1400px
+*/
