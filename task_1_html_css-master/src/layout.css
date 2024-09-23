@@ -1,13 +1,4 @@
-/*hide checkbox to control navbar*/
-#nav-checkbox {
-    display: none;
-    cursor: pointer;
-}
-
-#nav-control:hover {
-    cursor: pointer;
-}
-
+/* General layout */
 body {
     padding: 0 !important;
     overflow: hidden;
@@ -17,83 +8,51 @@ body {
   "header header"
   "side main"
   "footer footer";
-    grid-template-columns: 50px auto;
+  grid-template-columns: auto 1fr; 
+  transition: grid-template-columns 0.5s ease-in-out;
 }
 
 body:has(#nav-checkbox:checked) {
-    transition: 1s ease-in-out;
+    grid-template-columns: auto 1fr; 
+    transition: grid-template-columns 0.5s ease-in-out;
 
     > * {
-        transition: 2s ease-in-out !important;
+        transition: 0.5s ease-in-out !important;
     }
 
     grid-template-columns: 150px auto;
 
     & section {
         justify-content: start;
+        width: calc(10em + 20px); 
 
         & ul {
             align-items: flex-start;
+            overflow: hidden;
+        }
+
+        & ul li label {
+            display: none;
         }
 
         & ul li a span {
             display: initial;
+            opacity: 1;
+            transition: opacity 10s ease-in-out;
+        }
+
+        & label {
+            display: flex;
         }
     }
 }
 
-/* circle */
-/* also put in checkbox */ 
-section:has(#nav-checkbox:checked):after {
-    content: "X";
-    display: flex;
-    align-items: center;
-    place-content: center;
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid grey;
-    background: rgba(211, 211, 211, 0.8);
+body:has(#nav-checkbox:checked) {
+    grid-template-columns: auto 1fr; 
+    transition: grid-template-columns 0.5s ease-in-out;
 }
 
-/*some elements already have some styling from the cards.css card that are unrelated such as section*/
-body > section {
-    position: relative;
-    padding: 0 var(--space);
-    justify-content: center;
-    border-right: 1px solid var(--border-color);
-    grid-area: side;
-
-    & ul {
-        align-items: center;
-        list-style-type: none;
-        padding-inline-start: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-
-        & li > a {
-            color: #999;
-            font-size: 14px;
-            text-decoration: none;
-        }
-
-        & li > a:hover {
-            color: black;
-        }
-
-        /* dont display text only icons */
-
-        & li > a > span {
-            display: none;
-        }
-    }
-}
-
+/* Header layout */
 body > header {
     height: 50px;
     padding: var(--space);
@@ -110,17 +69,97 @@ body > header {
     }
 }
 
+/* Section layout */
+body > section {
+    position: relative;
+    padding: 0 var(--space);
+    justify-content: center;
+    border-right: 1px solid var(--border-color);
+    grid-area: side;
+    width: calc(3em + 20px);
+    transition: width 0.5s ease-in-out;
+
+    & ul {
+        align-items: center;
+        list-style-type: none;
+        padding-inline-start: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        & li {
+            white-space:nowrap;
+            overflow: hidden;
+        }
+
+        & li > a {
+            color: #999;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        & li > a:hover {
+            color: black;
+        }
+
+        & li > a > span {
+            display: none;
+            opacity: 0;
+            transition: opacity 20s ease-in-out; 
+        }
+    }
+}
+
+#nav-checkbox:checked + section .close-button {
+    display: block; 
+}
+
+#nav-checkbox {
+    display: none;
+    cursor: pointer;
+}
+
+#nav-control:hover {
+    cursor: pointer;
+}
+
+.close-button {
+    display: none;
+    align-items: center;
+    place-content: center;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid grey;
+    background: rgba(211, 211, 211, 0.8);
+    transition: display 0.5s ease-in-out;
+}
+
+/* Main layout */
 body > main {
     align-items: start;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    width: 100%;
     grid-area: main;
-    height: calc(100vh - 90px); /*height header + height footer*/
+    height: calc(100vh - 90px); 
     overflow-y: scroll;
     padding: var(--space)
 }
 
+/* Article layout */
+article {
+    & main {
+        place-items: flex-start;
+    }
+}
+
+/* Footer layout */
 body > footer {
     height: 40px;
     grid-area: footer;
@@ -130,13 +169,7 @@ body > footer {
     place-content: center;
 }
 
-article {
-    & main {
-        place-items: flex-start;
-    }
-}
-
-/*bootstrap large breakpoint*/
+/* Smaller Devices layout */
 @media screen and (min-width: 992px) {
     body {
         grid-template-columns: 150px auto;
@@ -151,6 +184,7 @@ article {
     }
 }
 
+
 /*
 Media queries (use bootstrap breakpoints)
 xs < 576px
@@ -160,3 +194,4 @@ lg >= 992px
 xl >= 1200px
 xxl >= 1400px
 */
+
