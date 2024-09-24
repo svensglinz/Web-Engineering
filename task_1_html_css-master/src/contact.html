@@ -6,12 +6,13 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Document</title>
     <link href="layout.css" rel="stylesheet" />
-
+    <link href="default.css" rel="stylesheet" />
     <script src="./main.ts" type="module"></script>
   </head>
   <body>
     <header>
       <h1>Contact</h1>
+      <i class="fa fa-solid fa-user"></i>
     </header>
 
     <section>
@@ -51,9 +52,64 @@
       <label id="close-control" for="nav-checkbox" class="close-button">X</label> 
   </section>
 
-    <main>
-<!--      TODO add form here-->
-    </main>
+  <main>
+    <form class="form-field" action="#" method="post">
+        <div class="form-group">
+            <label for="name" class="title" >Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Doe" pattern="[A-Za-z\s]+" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="title" >Email address</label>
+            <input type="email" id="email" name="email" placeholder="jane.doe@example.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="birthday" class="title">Birthday</label>
+            <input type="text" id="birthday" name="birthday" pattern="\\d{2}\\.\\d{2}\\.\\d{4}" placeholder="dd.mm.yyyy" required>
+        </div>
+
+        <div class="form-group">
+            <label class="title">What do you like the most?</label>
+            <div class="radio-group">
+                <div>
+                    <input type="radio" id="js" name="favorite" value="JS">
+                    <label id="option" for="js">JS</label>
+                </div>
+                <div>
+                    <input type="radio" id="html" name="favorite" value="HTML">
+                    <label id="option" for="html">HTML</label>
+                </div>
+                <div>
+                    <input type="radio" id="css" name="favorite" value="CSS">
+                    <label id="option" for="css">CSS</label>
+                </div>
+                <div>
+                    <input type="radio" id="undecided" name="favorite" value="undecided" checked>
+                    <label id="option" for="undecided">Cannot make a decision.</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="title" for="message">Your message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Enter your message here..."></textarea>
+        </div>
+
+        <div class="form-group checkbox-group">
+            <label></label> <!-- Empty label to align with other elements -->
+            <div>
+                <input type="checkbox" id="spam" name="spam">
+                <label id="option" for="spam">Yes, I want to receive your very important spam messages!</label>
+            </div>
+        </div>
+
+        <div class="form-group buttons">
+            <button type="submit">Send</button>
+            <button type="reset">Reset</button>
+        </div>
+    </form>
+</main>
 
     <footer>
       <div>Made with <i class="fa-solid fa-heart"></i> by David Sichau</div>
