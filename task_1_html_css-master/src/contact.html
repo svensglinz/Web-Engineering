@@ -66,7 +66,8 @@
 
         <div class="form-group">
             <label for="birthday" class="title">Birthday</label>
-            <input type="text" id="birthday" name="birthday" pattern="\\d{2}\\.\\d{2}\\.\\d{4}" placeholder="dd.mm.yyyy" required>
+            <!-- pattern not entirely correct, would be easier in js -->
+            <input type="text" id="birthday" name="birthday" pattern="[0-9]{2}\.[0-9]{2}\.[0-9]{4}" placeholder="dd.mm.yyyy" required>
         </div>
 
         <div class="form-group">
@@ -74,19 +75,19 @@
             <div class="radio-group">
                 <div>
                     <input type="radio" id="js" name="favorite" value="JS">
-                    <label id="option" for="js">JS</label>
+                    <label for="js">JS</label>
                 </div>
                 <div>
                     <input type="radio" id="html" name="favorite" value="HTML">
-                    <label id="option" for="html">HTML</label>
+                    <label for="html">HTML</label>
                 </div>
                 <div>
                     <input type="radio" id="css" name="favorite" value="CSS">
-                    <label id="option" for="css">CSS</label>
+                    <label for="css">CSS</label>
                 </div>
                 <div>
                     <input type="radio" id="undecided" name="favorite" value="undecided" checked>
-                    <label id="option" for="undecided">Cannot make a decision.</label>
+                    <label for="undecided">Cannot make a decision.</label>
                 </div>
             </div>
         </div>
